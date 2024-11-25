@@ -26,32 +26,26 @@ local_settings.py
 db.sqlite3
 db.sqlite3-journal
 media/
+staticfiles/
 
 # Virtual Environment
+.env
+.venv
+env/
 venv/
 ENV/
-env/
-.env
 
 # IDE
 .idea/
 .vscode/
 *.swp
 *.swo
+
+# OS
 .DS_Store
-
-# Coverage
-htmlcov/
-.coverage
-.coverage.*
-coverage.xml
-*.cover
-
-# Misc
-.env.local
-.env.development.local
-.env.test.local
-.env.production.local
-*.pyc
-.pytest_cache/
-.python-version
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
