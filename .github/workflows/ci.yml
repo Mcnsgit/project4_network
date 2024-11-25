@@ -44,12 +44,8 @@ jobs:
     steps:
     - uses: actions/checkout@v2
     
-    - name: Deploy to Heroku
-      uses: akhileshns/heroku-deploy@v3.12.12
+    - name: Deploy to Render
+      uses: johnbeynon/render-deploy-action@v0.0.8
       with:
-        heroku_api_key: ${{ secrets.HEROKU_API_KEY }}
-        heroku_app_name: ${{ secrets.HEROKU_APP_NAME }}
-        heroku_email: ${{ secrets.HEROKU_EMAIL }}
-      env:
-        HD_SECRET_KEY: ${{ secrets.DJANGO_SECRET_KEY }}
-        HD_DEBUG: "0"
+        service-id: ${{ secrets.RENDER_SERVICE_ID }}
+        api-key: ${{ secrets.RENDER_API_KEY }}

@@ -17,6 +17,26 @@ A feature-rich social networking platform built with Django, featuring real-time
 - 🔍 User Search
 - 📱 Responsive Design
 
+## 🚀 Deployment
+
+This project is configured for deployment on Render.com. To deploy:
+
+1. Create an account on [Render](https://render.com)
+2. Fork this repository to your GitHub account
+3. In Render:
+   - Create a new Web Service
+   - Connect your GitHub repository
+   - Use the following settings:
+     - Build Command: `pip install -r requirements.txt`
+     - Start Command: `gunicorn project4.wsgi:application`
+
+4. Add the following environment variables in Render:
+   - `DJANGO_SECRET_KEY`: Your Django secret key
+   - `DEBUG`: false
+   - `ALLOWED_HOSTS`: your-app.onrender.com
+
+The deployment will be handled automatically through GitHub Actions whenever you push to the main branch.
+
 ## 🚀 Demo
 
 [View Live Demo](#) _(Coming Soon)_
@@ -65,6 +85,15 @@ python manage.py runserver
 ```
 
 Visit `http://127.0.0.1:8000/` in your browser.
+
+## 🔧 Environment Variables
+
+The following environment variables are required:
+
+- `DJANGO_SECRET_KEY`: Django secret key
+- `DEBUG`: Set to 'False' in production
+- `ALLOWED_HOSTS`: Comma-separated list of allowed hosts
+- `DATABASE_URL`: Your database URL (provided by Render)
 
 ## 🧪 Running Tests
 
