@@ -12,17 +12,20 @@ from django.urls import reverse
 from django.views.decorators.csrf import csrf_exempt
 import random
 
+@login_required
 def index(request):
-    if not request.user.is_authenticated:
-        return render(request, 'network/index.html')
-
     if request.method == "POST":
-        form = PostForm(request.POST)
+        form = PostForm(request.POST, request.FILES)
         if form.is_valid():
             post = form.save(commit=False)
             post.user = request.user
             post.save()
-            return redirect('index')
+            return HttpResponseRedirect(reverse('index'))
+        else:
+            return render(request, 'network/index.html', {
+                'form': form,
+                'error': 'Invalid form submission'
+            })
     else:
         form = PostForm()
 
@@ -130,15 +133,20 @@ def create_post(request):
     return render(request, 'network/create_post.html', {'form': form})
 
 
+@login_required
 def profile(request, username):
     user_profile = get_object_or_404(User, username=username)
     posts = Post.objects.filter(user=user_profile).order_by('-created_at')
-
-    is_following = (request.user.is_authenticated and request.user in user_profile.following.all())
-
+    paginator = Paginator(posts, 10)
+    page_number = request.GET.get('page')
+    page_obj = paginator.get_page(page_number)
+    
+    is_following = request.user.is_authenticated and request.user in user_profile.followers.all()
+    
     return render(request, 'network/profile.html', {
         'user_profile': user_profile,
         'posts': posts,
+        'page_obj': page_obj,
         'is_following': is_following
     })
 

@@ -1,0 +1,21 @@
+#!/Users/Miguel/software_development_everything/MY_DEV_PROJECTS_LIBRARY/incomplete_dev_projects/1ALMOST_COMPOLETE/PROJECT_4_NETWORK_Mcnsgit/project4/.venv/bin/python3.11
+# When the django-admin.py deprecation ends, remove this script.
+import warnings
+
+from django.core import management
+
+try:
+    from django.utils.deprecation import RemovedInDjango40Warning
+except ImportError:
+    raise ImportError(
+        'django-admin.py was deprecated in Django 3.1 and removed in Django '
+        '4.0. Please manually remove this script from your virtual environment '
+        'and use django-admin instead.'
+    )
+
+if __name__ == "__main__":
+    warnings.warn(
+        'django-admin.py is deprecated in favor of django-admin.',
+        RemovedInDjango40Warning,
+    )
+    management.execute_from_command_line()

@@ -1,19 +1,18 @@
 services:
   - type: web
-    name: social-network
+    name: project4-network
     env: python
     buildCommand: pip install -r requirements.txt
-    startCommand: gunicorn project4.wsgi:application
+    startCommand: >
+      python manage.py migrate &&
+      python manage.py collectstatic --noinput &&
+      gunicorn project4.wsgi:application
     envVars:
       - key: PYTHON_VERSION
-        value: 3.9.16
-      - key: DATABASE_URL
-        fromDatabase:
-          name: social_network_db
-          property: connectionString
+        value: 3.11.0
       - key: DJANGO_SECRET_KEY
-        sync: false
-      - key: DEBUG
+        generateValue: true
+      - key: DJANGO_DEBUG
         value: false
 
 databases:
