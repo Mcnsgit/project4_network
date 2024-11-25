@@ -13,6 +13,7 @@ class NetworkTests(TestCase):
         )
         self.post = Post.objects.create(
             user=self.user,
+            title='Initial Test Post',
             content='Test post content'
         )
 
@@ -36,10 +37,13 @@ class NetworkTests(TestCase):
     def test_create_post(self):
         self.client.login(username='testuser', password='testpass123')
         response = self.client.post(reverse('index'), {
+            'title': 'Test Title',
             'content': 'New test post'
         })
         self.assertEqual(Post.objects.count(), 2)
-        self.assertEqual(Post.objects.latest('id').content, 'New test post')
+        latest_post = Post.objects.latest('id')
+        self.assertEqual(latest_post.content, 'New test post')
+        self.assertEqual(latest_post.title, 'Test Title')
 
     def test_view_profile(self):
         response = self.client.get(
