@@ -1,10 +1,7 @@
 # Social Network Web Application
 
-A feature-rich social networking platform built with Django, featuring real-time notifications, image sharing, and interactive posts.
+A social networking platform built with Django, featuring real-time notifications, image sharing, and interactive posts.
 
-![Python](https://img.shields.io/badge/Python-3.8%2B-blue)
-![Django](https://img.shields.io/badge/Django-3.2%2B-green)
-![License](https://img.shields.io/badge/license-MIT-blue)
 
 ## 🌟 Features
 
